@@ -10,13 +10,21 @@ export default function TextForm(props) {
         let newText=Text.toLowerCase();
         setText(newText)
     }
+    const speak = () => {
+        let msg = new SpeechSynthesisUtterance(Text);
+        msg.text = Text;
+        window.speechSynthesis.speak(msg);
+    }
+    const speakStop = () => {
+        window.speechSynthesis.cancel()
+    }
 
     const handleOnchange = (event)=> {
         setText(event.target.value)
     }
 
 
-    const[Text,setText] = useState("Enter text here")
+    const[Text,setText] = useState("")
   return (
     <>
     <div className="container">
@@ -25,10 +33,12 @@ export default function TextForm(props) {
         <textarea className="form-control" value={Text}id="myBox" onChange={handleOnchange} rows="8"></textarea>
         <button className="btn btn-primary mx-1" onClick={handleUpclick}>Convert to uppercase</button>
         <button className="btn btn-primary mx-1" onClick={handleLowclick}>Convert to Lowercase</button>
+        <button className="btn btn-primary mx-1" onClick={speak}>Speak</button>
+        <button className="btn btn-primary mx-1" onClick={speakStop}>Stop speaking</button>
         </div>
     </div>
     <div className="container my3">
-        <h1>Your text summary</h1>
+        <h2>Your text summary</h2>
         <p>Total words:{Text.split(" ").length} Total characters:{Text.length}</p>
         <p>{0.08*Text.split(" ").length} :Minutes taken to read </p>
         <p>{Text}</p>
