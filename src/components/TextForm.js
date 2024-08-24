@@ -29,7 +29,7 @@ export default function TextForm(props) {
     <>
     <div className="container">
         <h1 >{props.heading}</h1>
-        <div className='mb-3'>
+        <div className='mx-auto'>
         <textarea className="form-control" value={Text}id="myBox" onChange={handleOnchange} rows="8"></textarea>
         <button className="btn btn-primary mx-1" onClick={handleUpclick}>Convert to uppercase</button>
         <button className="btn btn-primary mx-1" onClick={handleLowclick}>Convert to Lowercase</button>
